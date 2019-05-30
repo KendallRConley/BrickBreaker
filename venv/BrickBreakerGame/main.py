@@ -162,8 +162,12 @@ while carryOn:
     static_sprites.draw(screen)
 
     font = pygame.font.Font(None, 50)
-    text = font.render(str(score), 1, WHITE)
-    screen.blit(text, (70, 10))
+    text = font.render("Score: " + str(score), 1, WHITE)
+    screen.blit(text, (20, 10))
+
+    font = pygame.font.Font(None, 50)
+    text = font.render("Speed: " + str(ball.velocity[1]), 1, WHITE)
+    screen.blit(text, (490, 10))
 
     pygame.display.flip() #Update screen
     clock.tick(60) #fps
