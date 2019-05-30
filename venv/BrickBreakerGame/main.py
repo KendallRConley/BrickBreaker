@@ -39,83 +39,25 @@ moving_sprites = pygame.sprite.Group()
 moving_sprites.add(playerPaddle)
 moving_sprites.add(ball)
 
-blue_brick1 = Brick(BLUE, 50, 15)
-blue_brick1.rect.x = 75
-blue_brick1.rect.y = BLUE_ROW
-
-blue_brick2 = Brick(BLUE, 50, 15)
-blue_brick2.rect.x = 175
-blue_brick2.rect.y = BLUE_ROW
-
-blue_brick3 = Brick(BLUE, 50, 15)
-blue_brick3.rect.x = 275
-blue_brick3.rect.y = BLUE_ROW
-
-blue_brick4 = Brick(BLUE, 50, 15)
-blue_brick4.rect.x = 375
-blue_brick4.rect.y = BLUE_ROW
-
-blue_brick5 = Brick(BLUE, 50, 15)
-blue_brick5.rect.x = 475
-blue_brick5.rect.y = BLUE_ROW
-
-blue_brick6 = Brick(BLUE, 50, 15)
-blue_brick6.rect.x = 575
-blue_brick6.rect.y = BLUE_ROW
-
-green_brick1 = Brick(GREEN, 50, 15)
-green_brick1.rect.x = 125
-green_brick1.rect.y = GREEN_ROW
-
-green_brick2 = Brick(GREEN, 50, 15)
-green_brick2.rect.x = 225
-green_brick2.rect.y = GREEN_ROW
-
-green_brick3 = Brick(GREEN, 50, 15)
-green_brick3.rect.x = 325
-green_brick3.rect.y = GREEN_ROW
-
-green_brick4 = Brick(GREEN, 50, 15)
-green_brick4.rect.x = 425
-green_brick4.rect.y = GREEN_ROW
-
-green_brick5 = Brick(GREEN, 50, 15)
-green_brick5.rect.x = 525
-green_brick5.rect.y = GREEN_ROW
-
-yellow_brick1 = Brick(YELLOW, 50, 15)
-yellow_brick1.rect.x = 175
-yellow_brick1.rect.y = YELLOW_ROW
-
-yellow_brick2 = Brick(YELLOW, 50, 15)
-yellow_brick2.rect.x = 275
-yellow_brick2.rect.y = YELLOW_ROW
-
-yellow_brick3 = Brick(YELLOW, 50, 15)
-yellow_brick3.rect.x = 375
-yellow_brick3.rect.y = YELLOW_ROW
-
-yellow_brick4 = Brick(YELLOW, 50, 15)
-yellow_brick4.rect.x = 475
-yellow_brick4.rect.y = YELLOW_ROW
-
 static_sprites = pygame.sprite.Group()
-static_sprites.add(blue_brick1)
-static_sprites.add(blue_brick2)
-static_sprites.add(blue_brick3)
-static_sprites.add(blue_brick4)
-static_sprites.add(blue_brick5)
-static_sprites.add(blue_brick6)
-static_sprites.add(green_brick1)
-static_sprites.add(green_brick2)
-static_sprites.add(green_brick3)
-static_sprites.add(green_brick4)
-static_sprites.add(green_brick5)
-static_sprites.add(yellow_brick1)
-static_sprites.add(yellow_brick2)
-static_sprites.add(yellow_brick3)
-static_sprites.add(yellow_brick4)
 
+for num in range (0,6):
+    brick = Brick(BLUE, 50, 15)
+    brick.rect.x = 75 + (100*num)
+    brick.rect.y = BLUE_ROW
+    static_sprites.add(brick)
+
+for num in range (0,5):
+    brick = Brick(GREEN, 50, 15)
+    brick.rect.x = 125 + (100*num)
+    brick.rect.y = GREEN_ROW
+    static_sprites.add(brick)
+
+for num in range (0,4):
+    brick = Brick(YELLOW, 50, 15)
+    brick.rect.x = 175 + (100*num)
+    brick.rect.y = YELLOW_ROW
+    static_sprites.add(brick)
 
 #main loop
 while carryOn:
