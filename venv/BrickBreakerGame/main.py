@@ -10,7 +10,11 @@ WHITE = (255, 255, 255) #For paddle and ball
 BLUE = (0, 0, 255) #For first layer, 1 point
 GREEN = (0, 255, 0) #For second layer, 3 points
 YELLOW = (228, 255, 11) #For third layer, 5 points
-RED = (255, 0, 0) #For final layer, 7 points
+
+#Rows
+BLUE_ROW = 150
+GREEN_ROW = 100
+YELLOW_ROW = 50
 
 #Open window
 size = (700, 500)
@@ -31,31 +35,47 @@ ball.rect.y = 195
 
 brick1 = Brick(BLUE, 50, 15)
 brick1.rect.x = 100
-brick1.rect.y = 150
+brick1.rect.y = BLUE_ROW
 
 brick2 = Brick(BLUE, 50, 15)
 brick2.rect.x = 200
-brick2.rect.y = 150
+brick2.rect.y = BLUE_ROW
 
 brick3 = Brick(BLUE, 50, 15)
 brick3.rect.x = 300
-brick3.rect.y = 150
+brick3.rect.y = BLUE_ROW
 
 brick4 = Brick(BLUE, 50, 15)
 brick4.rect.x = 400
-brick4.rect.y = 150
+brick4.rect.y = BLUE_ROW
 
 brick5 = Brick(BLUE, 50, 15)
 brick5.rect.x = 500
-brick5.rect.y = 150
+brick5.rect.y = BLUE_ROW
 
 brick6 = Brick(BLUE, 50, 15)
 brick6.rect.x = 600
-brick6.rect.y = 150
+brick6.rect.y = BLUE_ROW
 
 brick7 = Brick(GREEN, 50, 15)
 brick7.rect.x = 150
-brick7.rect.y = 100
+brick7.rect.y = GREEN_ROW
+
+brick8 = Brick(GREEN, 50, 15)
+brick8.rect.x = 250
+brick8.rect.y = GREEN_ROW
+
+brick9 = Brick(GREEN, 50, 15)
+brick9.rect.x = 350
+brick9.rect.y = GREEN_ROW
+
+brick10 = Brick(GREEN, 50, 15)
+brick10.rect.x = 450
+brick10.rect.y = GREEN_ROW
+
+brick11 = Brick(YELLOW, 50, 15)
+brick11.rect.x = 200
+brick11.rect.y = YELLOW_ROW
 
 moving_sprites = pygame.sprite.Group()
 moving_sprites.add(playerPaddle)
@@ -69,6 +89,11 @@ static_sprites.add(brick4)
 static_sprites.add(brick5)
 static_sprites.add(brick6)
 static_sprites.add(brick7)
+static_sprites.add(brick8)
+static_sprites.add(brick9)
+static_sprites.add(brick10)
+static_sprites.add(brick11)
+
 
 #main loop
 while carryOn:
@@ -101,12 +126,14 @@ while carryOn:
     for brick in static_sprites:
         if pygame.sprite.collide_mask(ball, brick):
             ball.bounce()
-            if brick.rect.y == 150:
-                brick.rect.x = 1000
+            static_sprites.remove(brick) # delete brick from sprite list
+            brick.remove() # delete brick itself
+            if brick.rect.y == BLUE_ROW:
                 score += 1
-            if brick.rect.y == 100:
-                brick.rect.x = 1000
+            if brick.rect.y == GREEN_ROW:
                 score += 3
+            if brick.rect.y == YELLOW_ROW: 
+                score += 5
 
     moving_sprites.update()
     screen.fill(BLACK) #Background
