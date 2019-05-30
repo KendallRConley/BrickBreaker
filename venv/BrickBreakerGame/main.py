@@ -33,66 +33,86 @@ ball = Ball(WHITE,10,10)
 ball.rect.x = 345
 ball.rect.y = 195
 
-brick1 = Brick(BLUE, 50, 15)
-brick1.rect.x = 100
-brick1.rect.y = BLUE_ROW
-
-brick2 = Brick(BLUE, 50, 15)
-brick2.rect.x = 200
-brick2.rect.y = BLUE_ROW
-
-brick3 = Brick(BLUE, 50, 15)
-brick3.rect.x = 300
-brick3.rect.y = BLUE_ROW
-
-brick4 = Brick(BLUE, 50, 15)
-brick4.rect.x = 400
-brick4.rect.y = BLUE_ROW
-
-brick5 = Brick(BLUE, 50, 15)
-brick5.rect.x = 500
-brick5.rect.y = BLUE_ROW
-
-brick6 = Brick(BLUE, 50, 15)
-brick6.rect.x = 600
-brick6.rect.y = BLUE_ROW
-
-brick7 = Brick(GREEN, 50, 15)
-brick7.rect.x = 150
-brick7.rect.y = GREEN_ROW
-
-brick8 = Brick(GREEN, 50, 15)
-brick8.rect.x = 250
-brick8.rect.y = GREEN_ROW
-
-brick9 = Brick(GREEN, 50, 15)
-brick9.rect.x = 350
-brick9.rect.y = GREEN_ROW
-
-brick10 = Brick(GREEN, 50, 15)
-brick10.rect.x = 450
-brick10.rect.y = GREEN_ROW
-
-brick11 = Brick(YELLOW, 50, 15)
-brick11.rect.x = 200
-brick11.rect.y = YELLOW_ROW
-
 moving_sprites = pygame.sprite.Group()
 moving_sprites.add(playerPaddle)
 moving_sprites.add(ball)
 
+blue_brick1 = Brick(BLUE, 50, 15)
+blue_brick1.rect.x = 75
+blue_brick1.rect.y = BLUE_ROW
+
+blue_brick2 = Brick(BLUE, 50, 15)
+blue_brick2.rect.x = 175
+blue_brick2.rect.y = BLUE_ROW
+
+blue_brick3 = Brick(BLUE, 50, 15)
+blue_brick3.rect.x = 275
+blue_brick3.rect.y = BLUE_ROW
+
+blue_brick4 = Brick(BLUE, 50, 15)
+blue_brick4.rect.x = 375
+blue_brick4.rect.y = BLUE_ROW
+
+blue_brick5 = Brick(BLUE, 50, 15)
+blue_brick5.rect.x = 475
+blue_brick5.rect.y = BLUE_ROW
+
+blue_brick6 = Brick(BLUE, 50, 15)
+blue_brick6.rect.x = 575
+blue_brick6.rect.y = BLUE_ROW
+
+green_brick1 = Brick(GREEN, 50, 15)
+green_brick1.rect.x = 125
+green_brick1.rect.y = GREEN_ROW
+
+green_brick2 = Brick(GREEN, 50, 15)
+green_brick2.rect.x = 225
+green_brick2.rect.y = GREEN_ROW
+
+green_brick3 = Brick(GREEN, 50, 15)
+green_brick3.rect.x = 325
+green_brick3.rect.y = GREEN_ROW
+
+green_brick4 = Brick(GREEN, 50, 15)
+green_brick4.rect.x = 425
+green_brick4.rect.y = GREEN_ROW
+
+green_brick5 = Brick(GREEN, 50, 15)
+green_brick5.rect.x = 525
+green_brick5.rect.y = GREEN_ROW
+
+yellow_brick1 = Brick(YELLOW, 50, 15)
+yellow_brick1.rect.x = 175
+yellow_brick1.rect.y = YELLOW_ROW
+
+yellow_brick2 = Brick(YELLOW, 50, 15)
+yellow_brick2.rect.x = 275
+yellow_brick2.rect.y = YELLOW_ROW
+
+yellow_brick3 = Brick(YELLOW, 50, 15)
+yellow_brick3.rect.x = 375
+yellow_brick3.rect.y = YELLOW_ROW
+
+yellow_brick4 = Brick(YELLOW, 50, 15)
+yellow_brick4.rect.x = 475
+yellow_brick4.rect.y = YELLOW_ROW
+
 static_sprites = pygame.sprite.Group()
-static_sprites.add(brick1)
-static_sprites.add(brick2)
-static_sprites.add(brick3)
-static_sprites.add(brick4)
-static_sprites.add(brick5)
-static_sprites.add(brick6)
-static_sprites.add(brick7)
-static_sprites.add(brick8)
-static_sprites.add(brick9)
-static_sprites.add(brick10)
-static_sprites.add(brick11)
+static_sprites.add(blue_brick1)
+static_sprites.add(blue_brick2)
+static_sprites.add(blue_brick3)
+static_sprites.add(blue_brick4)
+static_sprites.add(blue_brick5)
+static_sprites.add(blue_brick6)
+static_sprites.add(green_brick1)
+static_sprites.add(green_brick2)
+static_sprites.add(green_brick3)
+static_sprites.add(green_brick4)
+static_sprites.add(green_brick5)
+static_sprites.add(yellow_brick1)
+static_sprites.add(yellow_brick2)
+static_sprites.add(yellow_brick3)
+static_sprites.add(yellow_brick4)
 
 
 #main loop
@@ -132,7 +152,7 @@ while carryOn:
                 score += 1
             if brick.rect.y == GREEN_ROW:
                 score += 3
-            if brick.rect.y == YELLOW_ROW: 
+            if brick.rect.y == YELLOW_ROW:
                 score += 5
 
     moving_sprites.update()
