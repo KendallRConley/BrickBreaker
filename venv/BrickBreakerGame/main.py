@@ -11,6 +11,8 @@ BLUE = (0, 0, 255) #For first layer, 1 point
 GREEN = (0, 255, 0) #For second layer, 3 points
 YELLOW = (228, 255, 11) #For third layer, 5 points
 
+PADDLE_SPEED = 15
+
 #Rows
 BLUE_ROW = 150
 GREEN_ROW = 100
@@ -127,9 +129,9 @@ while carryOn:
     keys = pygame.key.get_pressed()
 
     if keys[pygame.K_LEFT]:
-        playerPaddle.moveLeft(10)
+        playerPaddle.moveLeft(PADDLE_SPEED)
     if keys[pygame.K_RIGHT]:
-        playerPaddle.moveRight(10)
+        playerPaddle.moveRight(PADDLE_SPEED)
 
     if ball.rect.x >= 690:
         ball.velocity[0] = -ball.velocity[0]
