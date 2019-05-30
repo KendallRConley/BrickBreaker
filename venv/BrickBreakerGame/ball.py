@@ -6,13 +6,11 @@ MAX_VELOCITY = 20 #Max speed of ball
 VELOCITY_PER = 1 #Change per bounce
 
 class Ball(pygame.sprite.Sprite):
-    # This class represents a car. It derives from the "Sprite" class in Pygame.
 
     def __init__(self, color, width, height):
         # Call the parent class (Sprite) constructor
         super().__init__()
 
-        # Pass in the color of the car, and its x and y position, width and height.
         # Set the background color and set it to be transparent
         self.image = pygame.Surface([width, height])
         self.image.fill(BLACK)
@@ -21,7 +19,7 @@ class Ball(pygame.sprite.Sprite):
         # Draw the ball (a rectangle!)
         pygame.draw.rect(self.image, color, [0, 0, width, height])
 
-        self.velocity = [randint(4, 8), randint(-8, 8)]
+        self.velocity = [randint(4, 8), 4]
 
         # Fetch the rectangle object that has the dimensions of the image.
         self.rect = self.image.get_rect()
@@ -31,7 +29,7 @@ class Ball(pygame.sprite.Sprite):
         self.rect.y += self.velocity[1]
 
     def bounce(self):
-        self.velocity[0] = -self.velocity[0]
+        self.velocity[0] = randint(-8, 8)
         if self.velocity[1] < MAX_VELOCITY:
             self.velocity[1] = -self.velocity[1] - VELOCITY_PER
         else:

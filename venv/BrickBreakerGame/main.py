@@ -21,15 +21,15 @@ clock = pygame.time.Clock()
 
 playerPaddle = Paddle(WHITE, 100, 10)
 playerPaddle.rect.x = 300
-playerPaddle.rect.y = 450
+playerPaddle.rect.y = 470
 
 ball = Ball(WHITE,10,10)
 ball.rect.x = 345
 ball.rect.y = 195
 
-all_sprites_list = pygame.sprite.Group()
-all_sprites_list.add(playerPaddle)
-all_sprites_list.add(ball)
+moving_sprites = pygame.sprite.Group()
+moving_sprites.add(playerPaddle)
+moving_sprites.add(ball)
 
 #main loop
 while carryOn:
@@ -59,10 +59,10 @@ while carryOn:
     if pygame.sprite.collide_mask(ball, playerPaddle):
             ball.bounce()
 
-    all_sprites_list.update()
+    moving_sprites.update()
     screen.fill(BLACK) #Background
     pygame.draw.line(screen, WHITE, [0,500], [700, 500], 5) #Bottom, hit = death
-    all_sprites_list.draw(screen) #Add sprites to screen
+    moving_sprites.draw(screen) #Add sprites to screen
 
     font = pygame.font.Font(None, 74)
     text = font.render(str(ball.velocity[1]), 1, WHITE)
