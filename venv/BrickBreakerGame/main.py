@@ -52,7 +52,7 @@ while carryOn:
     if ball.rect.x <= 0:
         ball.velocity[0] = -ball.velocity[0]
     if ball.rect.y > 490:
-        ball.velocity[1] = -ball.velocity[1]
+        carryOn = False
     if ball.rect.y < 0:
         ball.velocity[1] = -ball.velocity[1]
 
@@ -60,10 +60,14 @@ while carryOn:
             ball.bounce()
 
     all_sprites_list.update()
-
     screen.fill(BLACK) #Background
     pygame.draw.line(screen, WHITE, [0,500], [700, 500], 5) #Bottom, hit = death
     all_sprites_list.draw(screen) #Add sprites to screen
+
+    font = pygame.font.Font(None, 74)
+    text = font.render(str(ball.velocity[1]), 1, WHITE)
+    screen.blit(text, (250, 10))
+
     pygame.display.flip() #Update screen
     clock.tick(60) #fps
 

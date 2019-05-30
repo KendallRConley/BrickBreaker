@@ -2,7 +2,8 @@ import pygame
 from random import randint
 
 BLACK = (0, 0, 0)
-
+MAX_VELOCITY = 20 #Max speed of ball
+VELOCITY_PER = 1 #Change per bounce
 
 class Ball(pygame.sprite.Sprite):
     # This class represents a car. It derives from the "Sprite" class in Pygame.
@@ -31,4 +32,7 @@ class Ball(pygame.sprite.Sprite):
 
     def bounce(self):
         self.velocity[0] = -self.velocity[0]
-        self.velocity[1] = randint(-8, 8)
+        if self.velocity[1] < MAX_VELOCITY:
+            self.velocity[1] = -self.velocity[1] - VELOCITY_PER
+        else:
+            self.velocity[1] = -self.velocity[1]
