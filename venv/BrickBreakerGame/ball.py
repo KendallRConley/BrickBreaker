@@ -2,7 +2,7 @@ import pygame
 from random import randint
 
 BLACK = (0, 0, 0)
-MAX_VELOCITY = 20 #Max speed of ball
+MAX_VELOCITY = 10 #Max speed of ball
 VELOCITY_PER = 1 #Change per bounce
 
 class Ball(pygame.sprite.Sprite):
