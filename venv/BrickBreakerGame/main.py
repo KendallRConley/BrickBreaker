@@ -2,6 +2,7 @@ import pygame
 from paddle import Paddle
 from ball import Ball
 from Brick import Brick
+from random import randint
 pygame.init()
 
 #Colors to use
@@ -29,6 +30,8 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Brick Breaker")
 
 carryOn = True
+Start = True
+Menu = False
 clock = pygame.time.Clock()
 score = 0
 
@@ -68,12 +71,41 @@ instantiateBricks()
 
 #main loop
 while carryOn:
+    while Menu:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_c:  #Pressing the c Key will remake the bricks and continue the game
+                    instantiateBricks()
+                    ball.rect.x = 345
+                    ball.rect.y = 195
+                    ball.velocity = [randint(4, 8), 4]
+                    Menu = False
+                elif event.key == pygame.K_x:  #Pressing the x Key will quit the game
+                    carryOn = False
+                    Menu = False
+
+
+    while Start:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_s:  #Pressing the s Key will start the game
+                    Start = False
+                elif event.key == pygame.K_x:  #Pressing the x Key will quit the game
+                    carryOn = False
+                    Start = False
+                elif event.key == pygame.K_r:  # Pressing the r Key will restart the game
+                    score = 0
+                    ball.rect.x = 345
+                    ball.rect.y = 195
+                    ball.velocity = [randint(4, 8), 4]
+                    Start = False
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             carryOn = False
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_x:  #Pressing the x Key will quit the game
-                carryOn = False
+            if event.key == pygame.K_p:  #Pressing the x Key will quit the game
+                Start = True
 
     keys = pygame.key.get_pressed()
 
@@ -107,7 +139,7 @@ while carryOn:
                 score += YELLOW_VAL
 
     if len(static_sprites) == 0:
-        instantiateBricks()
+        Menu = True
 
     moving_sprites.update()
     screen.fill(BLACK) #Background
