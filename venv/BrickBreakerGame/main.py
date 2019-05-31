@@ -18,6 +18,11 @@ BLUE_ROW = 150
 GREEN_ROW = 100
 YELLOW_ROW = 50
 
+#Point values
+BLUE_VAL = 1
+GREEN_VAL = 3
+YELLOW_VAL = 5
+
 #Open window
 size = (700, 500)
 screen = pygame.display.set_mode(size)
@@ -39,25 +44,27 @@ moving_sprites = pygame.sprite.Group()
 moving_sprites.add(playerPaddle)
 moving_sprites.add(ball)
 
+def instantiateBricks():
+    for num in range(0, 6):
+        brick = Brick(BLUE, 50, 15)
+        brick.rect.x = 75 + (100 * num)
+        brick.rect.y = BLUE_ROW
+        static_sprites.add(brick)
+
+    for num in range(0, 5):
+        brick = Brick(GREEN, 50, 15)
+        brick.rect.x = 125 + (100 * num)
+        brick.rect.y = GREEN_ROW
+        static_sprites.add(brick)
+
+    for num in range(0, 4):
+        brick = Brick(YELLOW, 50, 15)
+        brick.rect.x = 175 + (100 * num)
+        brick.rect.y = YELLOW_ROW
+        static_sprites.add(brick)
+
 static_sprites = pygame.sprite.Group()
-
-for num in range (0,6):
-    brick = Brick(BLUE, 50, 15)
-    brick.rect.x = 75 + (100*num)
-    brick.rect.y = BLUE_ROW
-    static_sprites.add(brick)
-
-for num in range (0,5):
-    brick = Brick(GREEN, 50, 15)
-    brick.rect.x = 125 + (100*num)
-    brick.rect.y = GREEN_ROW
-    static_sprites.add(brick)
-
-for num in range (0,4):
-    brick = Brick(YELLOW, 50, 15)
-    brick.rect.x = 175 + (100*num)
-    brick.rect.y = YELLOW_ROW
-    static_sprites.add(brick)
+instantiateBricks()
 
 #main loop
 while carryOn:
@@ -93,11 +100,14 @@ while carryOn:
             static_sprites.remove(brick) # delete brick from sprite list
             brick.remove() # delete brick itself
             if brick.rect.y == BLUE_ROW:
-                score += 1
+                score += BLUE_VAL
             if brick.rect.y == GREEN_ROW:
-                score += 3
+                score += GREEN_VAL
             if brick.rect.y == YELLOW_ROW:
-                score += 5
+                score += YELLOW_VAL
+
+    if len(static_sprites) == 0:
+        instantiateBricks()
 
     moving_sprites.update()
     screen.fill(BLACK) #Background
