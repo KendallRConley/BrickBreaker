@@ -97,7 +97,11 @@ while carryOn:
                     score = 0
                     ball.rect.x = 345
                     ball.rect.y = 195
+                    for brick in static_sprites:
+                        static_sprites.remove(brick)  # delete brick from sprite list
+                        brick.remove()  # delete brick itself
                     ball.velocity = [randint(4, 8), 4]
+                    instantiateBricks()
                     Start = False
 
     for event in pygame.event.get():
