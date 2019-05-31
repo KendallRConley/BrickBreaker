@@ -110,7 +110,11 @@ while carryOn:
     screen.blit(text, (20, 10))
 
     font = pygame.font.Font(None, 50)
-    text = font.render("Speed: " + str(ball.velocity[1]), 1, WHITE)
+    text = font.render("X Speed: " + str(ball.velocity[0]), 1, WHITE)
+    screen.blit(text, (290, 10))
+
+    font = pygame.font.Font(None, 50)
+    text = font.render("Y Speed: " + str(ball.velocity[1]), 1, WHITE)
     screen.blit(text, (490, 10))
 
     pygame.display.flip() #Update screen
