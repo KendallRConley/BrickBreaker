@@ -12,7 +12,12 @@ BLUE = (0, 0, 255) #For first layer, 1 point
 GREEN = (0, 255, 0) #For second layer, 3 points
 YELLOW = (228, 255, 11) #For third layer, 5 points
 
+#Paddle speed
 PADDLE_SPEED = 15
+
+#Ball starting position
+BALL_X = 345
+BALL_Y = 195
 
 #Rows
 BLUE_ROW = 150
@@ -40,8 +45,8 @@ playerPaddle.rect.x = 300
 playerPaddle.rect.y = 470
 
 ball = Ball(WHITE,10,10)
-ball.rect.x = 345
-ball.rect.y = 195
+ball.rect.x = BALL_X
+ball.rect.y = BALL_Y
 
 moving_sprites = pygame.sprite.Group()
 moving_sprites.add(playerPaddle)
@@ -69,6 +74,8 @@ def instantiateBricks():
 static_sprites = pygame.sprite.Group()
 instantiateBricks()
 
+font = pygame.font.Font(None, 50)
+
 #main loop
 while carryOn:
     while Menu:
@@ -76,8 +83,8 @@ while carryOn:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_c:  #Pressing the c Key will remake the bricks and continue the game
                     instantiateBricks()
-                    ball.rect.x = 345
-                    ball.rect.y = 195
+                    ball.rect.x = BALL_X
+                    ball.rect.y = BALL_Y
                     ball.velocity = [randint(4, 8), 4]
                     Menu = False
                 elif event.key == pygame.K_x:  #Pressing the x Key will quit the game
@@ -95,8 +102,8 @@ while carryOn:
                     Start = False
                 elif event.key == pygame.K_r:  # Pressing the r Key will restart the game
                     score = 0
-                    ball.rect.x = 345
-                    ball.rect.y = 195
+                    ball.rect.x = BALL_X
+                    ball.rect.y = BALL_Y
                     for brick in static_sprites:
                         static_sprites.remove(brick)  # delete brick from sprite list
                         brick.remove()  # delete brick itself
@@ -151,17 +158,14 @@ while carryOn:
     moving_sprites.draw(screen) #Add sprites to screen
     static_sprites.draw(screen)
 
-    font = pygame.font.Font(None, 50)
-    text = font.render("Score: " + str(score), 1, WHITE)
-    screen.blit(text, (20, 10))
+    textScore = font.render("Score: " + str(score), 1, WHITE)
+    screen.blit(textScore, (20, 10))
 
-    font = pygame.font.Font(None, 50)
-    text = font.render("X Speed: " + str(ball.velocity[0]), 1, WHITE)
-    screen.blit(text, (290, 10))
+    textXSpeed = font.render("X Speed: " + str(ball.velocity[0]), 1, WHITE)
+    screen.blit(textXSpeed, (290, 10))
 
-    font = pygame.font.Font(None, 50)
-    text = font.render("Y Speed: " + str(ball.velocity[1]), 1, WHITE)
-    screen.blit(text, (490, 10))
+    textYSpeed = font.render("Y Speed: " + str(ball.velocity[1]), 1, WHITE)
+    screen.blit(textYSpeed, (490, 10))
 
     pygame.display.flip() #Update screen
     clock.tick(60) #fps
