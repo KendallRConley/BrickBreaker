@@ -125,9 +125,7 @@ while carryOn:
     if keys[pygame.K_RIGHT]:
         playerPaddle.moveRight(PADDLE_SPEED)
 
-    if ball.rect.x >= 690:
-        ball.velocity[0] = -ball.velocity[0]
-    if ball.rect.x <= 0:
+    if ball.rect.x >= 690 or ball.rect.x <= 0:
         ball.velocity[0] = -ball.velocity[0]
     if ball.rect.y > 490:
         carryOn = False
@@ -144,9 +142,9 @@ while carryOn:
             brick.remove() # delete brick itself
             if brick.rect.y == BLUE_ROW:
                 score += BLUE_VAL
-            if brick.rect.y == GREEN_ROW:
+            elif brick.rect.y == GREEN_ROW:
                 score += GREEN_VAL
-            if brick.rect.y == YELLOW_ROW:
+            elif brick.rect.y == YELLOW_ROW:
                 score += YELLOW_VAL
 
     if len(static_sprites) == 0:
@@ -160,12 +158,6 @@ while carryOn:
 
     textScore = font.render("Score: " + str(score), 1, WHITE)
     screen.blit(textScore, (20, 10))
-
-    textXSpeed = font.render("X Speed: " + str(ball.velocity[0]), 1, WHITE)
-    screen.blit(textXSpeed, (290, 10))
-
-    textYSpeed = font.render("Y Speed: " + str(ball.velocity[1]), 1, WHITE)
-    screen.blit(textYSpeed, (490, 10))
 
     pygame.display.flip() #Update screen
     clock.tick(60) #fps
